@@ -70,6 +70,10 @@ function! s:ClangCompleteInit()
     let g:clang_snippets_engine = 'clang_complete'
   endif
 
+  if !exists('g:clang_complete_snippet_jump_map')
+    let g:clang_complete_snippet_jump_map = '<Tab>'
+  endif
+
   if !exists('g:clang_user_options')
     let g:clang_user_options = ''
   endif
@@ -176,7 +180,9 @@ function! s:ClangCompleteInit()
     inoremap <expr> <buffer> : <SID>CompleteColon()
     execute "nnoremap <buffer> <silent> " . g:clang_jumpto_declaration_key . " :call <SID>GotoDeclaration(0)<CR><Esc>"
     execute "nnoremap <buffer> <silent> " . g:clang_jumpto_declaration_in_preview_key . " :call <SID>GotoDeclaration(1)<CR><Esc>"
-    execute "nnoremap <buffer> <silent> " . g:clang_jumpto_back_key . " <C-O>"
+    if g:clang_jumpto_back_key != ""
+      execute "nnoremap <buffer> <silent> " . g:clang_jumpto_back_key . " <C-O>"
+    endif
   endif
 
   " Force menuone. Without it, when there's only one completion result,

@@ -2,8 +2,10 @@ import re
 import vim
 
 def snippetsInit():
-  vim.command("noremap <silent> <buffer> <tab> :python updateSnips()<CR>")
-  vim.command("snoremap <silent> <buffer> <tab> <ESC>:python updateSnips()<CR>")
+  snippet_jump_map = vim.eval("g:clang_complete_snippet_jump_map")
+  if "" != snippet_jump_map:
+    vim.command("noremap <silent> <buffer> "+snippet_jump_map+" :python updateSnips()<CR>")
+    vim.command("snoremap <silent> <buffer> "+snippet_jump_map+" <ESC>:python updateSnips()<CR>")
   if int(vim.eval("g:clang_conceal_snippets")) == 1:
     vim.command("syntax match placeHolder /\$`[^`]*`/ contains=placeHolderMark")
     vim.command("syntax match placeHolderMark contained /\$`/ conceal")

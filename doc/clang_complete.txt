@@ -133,6 +133,12 @@ The snippets engine (clang_complete, ultisnips... see the snippets
 subdirectory).
 Default: "clang_complete"
 
+				       	*clang_complete-snippet_jump_map*
+				       	*g:clang_complete_snippet_jump_map*
+Key clang_complete snippet engine uses to jump between replaceables.
+If it is empty string, then nothing is mapped.
+Default: '<Tab>'
+
        				       	*clang_complete-conceal_snippets*
        				       	*g:clang_conceal_snippets*
 Note: This option is specific to clang_complete snippets engine.
@@ -274,7 +280,8 @@ Note: You could use the g:ClangGotoDeclarationPreview() to do the same with a ma
 Set the key used to jump back.
 Note: Effectively this will be remapped to <C-O>. The default value is chosen
 to be coherent with ctags implementation.
-Defaut: "<C-T>"
+If it is empty then nothing will be remapped to <C-O>, you can use <C-O> as it is.
+Default: "<C-T>"
 
 					*clang_complete-make_default_keymappings*
 					*g:clang_make_default_keymappings*

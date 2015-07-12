@@ -558,6 +558,9 @@ def gotoDeclaration(preview=True):
     f = File.from_name(tu, vim.current.buffer.name)
     loc = SourceLocation.from_position(tu, f, line, col + 1)
     cursor = Cursor.from_location(tu, loc)
+    vim.command("let g:is_virtual_method = 0");
+    if cursor.is_virtual_method():
+      vim.command("let g:is_virtual_method = 1");
     defs = [cursor.get_definition(), cursor.referenced]
 
     for d in defs:
@@ -565,6 +568,8 @@ def gotoDeclaration(preview=True):
         loc = d.location
         if loc.file is not None:
           jumpToLocation(loc.file.name, loc.line, loc.column, preview)
+          if d.is_virtual_method():
+            vim.command("let g:is_virtual_method = 1");
         break
 
   timer.finish()

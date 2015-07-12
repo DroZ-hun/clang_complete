@@ -263,6 +263,11 @@ Default: 0
 If clang should complete code patterns, i.e loop constructs etc.
 Defaut: 0
 
+					*clang_complete-print_type_key*
+					*g:clang_print_type_key*
+Set the key used to print the type of the identifier under cursor.
+Defaut: "zp"
+
 					*clang_complete-jumpto_declaration_key*
 					*g:clang_jumpto_declaration_key*
 Set the key used to jump to declaration.

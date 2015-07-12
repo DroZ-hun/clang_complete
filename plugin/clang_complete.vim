@@ -120,6 +120,10 @@ function! s:ClangCompleteInit()
     let g:clang_auto_user_options = '.clang_complete, path'
   endif
 
+  if !exists('g:clang_print_type_key')
+    let g:clang_print_type_key = 'zp'
+  endif
+
   if !exists('g:clang_jumpto_declaration_key')
     let g:clang_jumpto_declaration_key = '<C-]>'
   endif
@@ -178,6 +182,7 @@ function! s:ClangCompleteInit()
     inoremap <expr> <buffer> . <SID>CompleteDot()
     inoremap <expr> <buffer> > <SID>CompleteArrow()
     inoremap <expr> <buffer> : <SID>CompleteColon()
+    execute "nnoremap <buffer> <silent> " . g:clang_print_type_key . " :call <SID>PrintType()<CR><Esc>"
     execute "nnoremap <buffer> <silent> " . g:clang_jumpto_declaration_key . " :call <SID>GotoDeclaration(0)<CR><Esc>"
     execute "nnoremap <buffer> <silent> " . g:clang_jumpto_declaration_in_preview_key . " :call <SID>GotoDeclaration(1)<CR><Esc>"
     if g:clang_jumpto_back_key != ""
@@ -609,6 +614,12 @@ function! s:CompleteColon()
     return ':'
   endif
   return ':' . s:LaunchCompletion()
+endfunction
+
+function! s:PrintType()
+    python clangGetType()
+    redraw
+    echom b:clang_type
 endfunction
 
 function! s:GotoDeclaration(preview)

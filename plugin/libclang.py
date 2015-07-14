@@ -593,8 +593,9 @@ def clangGetType():
     type = cursor.type
     type_str = type.get_spelling()+" ("+type.get_canonical().get_spelling()+")"
   vim.command("let b:clang_type = '" + type_str.replace("'","''")+"'")
-  # TODO: also print other constat values...
-  #  http://stackoverflow.com/questions/10692015/libclang-get-primitive-value
+  # TODO: also print other constat values
+  #       and if there is such, then their int representation as well....
+  #       http://stackoverflow.com/questions/10692015/libclang-get-primitive-value
   #  if does not work, then google: libclang get constant value
   const_value = ""
   if CursorKind.ENUM_CONSTANT_DECL == cursor.kind:

@@ -626,7 +626,7 @@ def clangGetType():
   with libclangLock:
     [cursor, loc] = _getCursorAndLocation(line, col, params, timer)
     type = cursor.type
-    type_str = type.get_spelling()+" ("+type.get_canonical().get_spelling()+")"
+    type_str = type.get_spelling().decode("utf-8")+" ("+type.get_canonical().get_spelling().decode("utf-8")+")"
   vim.command("let b:clang_type = '" + type_str.replace("'","''")+"'")
   # TODO: also print other constat values
   #       and if there is such, then their int representation as well....

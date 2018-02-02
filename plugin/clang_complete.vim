@@ -646,7 +646,7 @@ function! s:CompleteColon()
 endfunction
 
 function! ClangPrintType()
-    python clangGetType()
+    execute s:py_cmd "clangGetType()"
     redraw
     echom b:clang_type
 endfunction

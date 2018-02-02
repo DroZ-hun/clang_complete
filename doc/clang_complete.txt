@@ -277,17 +277,21 @@ Default: 0
 					*clang_complete-print_type_key*
 					*g:clang_print_type_key*
 Set the key used to print the type of the identifier under cursor.
+If it is empty then no shortcut will be created to gather this info.
 Defaut: "zp"
+Note: You can call ClangPrintType() vim function to print this information.
 
 					*clang_complete-jumpto_declaration_key*
 					*g:clang_jumpto_declaration_key*
 Set the key used to jump to declaration.
+If it is empty then no shortcut will be created for this jump.
 Default: "<C-]>"
 Note: You could use the g:ClangGotoDeclaration() to do the same with a mapping.
 
 					*clang_complete-jumpto_declaration_in_preview_key*
 					*g:clang_jumpto_declaration_in_preview_key*
 Set the key used to jump to declaration in a preview window.
+If it is empty then no shortcut will be created for this jump.
 Default: "<C-W>]"
 Note: You could use the g:ClangGotoDeclarationPreview() to do the same with a mapping.
 

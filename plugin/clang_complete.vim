@@ -664,6 +664,7 @@ function! s:GotoDeclaration(preview)
       redraw
       echohl ErrorMsg | echom "This is a virtual function!" | echohl None
     else
+      " TODO: only print this if this is a function.
       redraw
       echom "non-virtual function"
     endif

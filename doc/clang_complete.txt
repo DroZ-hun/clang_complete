@@ -141,7 +141,7 @@ Default: "clang_complete"
 				       	*g:clang_complete_snippet_jump_map*
 Key clang_complete snippet engine uses to jump between replaceables.
 If it is empty string, then nothing is mapped.
-Default: '<Tab>'
+Default: '<tab>'
 
        				       	*clang_complete-conceal_snippets*
        				       	*g:clang_conceal_snippets*

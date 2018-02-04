@@ -79,7 +79,7 @@ function! s:ClangCompleteInit()
   endif
 
   if !exists('g:clang_complete_snippet_jump_map')
-    let g:clang_complete_snippet_jump_map = '<Tab>'
+    let g:clang_complete_snippet_jump_map = '<tab>'
   endif
 
   if !exists('g:clang_user_options')

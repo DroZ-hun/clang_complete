@@ -1579,7 +1579,7 @@ class Type(Structure):
 
         If the type is invalid, an empty string is returned.
         """
-        return conf.lib.clang_getTypeSpelling(self)
+        return conf.lib.clang_getTypeSpelling(self).decode("utf-8")
 
     def is_const_qualified(self):
         """Determine whether a Type has the "const" qualifier set.

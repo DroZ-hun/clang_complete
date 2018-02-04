@@ -634,7 +634,7 @@ def clangGetType():
   with libclangLock:
     [cursor, loc] = _getCursorAndLocation(line, col, params, timer)
     type = cursor.type
-    type_str = type.get_spelling().decode("utf-8")+" ("+type.get_canonical().get_spelling().decode("utf-8")+")"
+    type_str = type.get_spelling()+" ("+type.get_canonical().get_spelling()+")"
   vim.command("let b:clang_type = '" + type_str.replace("'","''")+"'")
   const_value = ""
   if CursorKind.ENUM_CONSTANT_DECL == cursor.kind:
@@ -654,4 +654,3 @@ def clangGetType():
 
 
 # vim: set ts=2 sts=2 sw=2 expandtab :
-

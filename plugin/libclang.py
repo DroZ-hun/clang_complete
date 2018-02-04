@@ -604,11 +604,14 @@ def _getCursorAndLocation(line, col, params, timer):
 
 def gotoDeclaration(preview=True):
   [line, col, params, timer] =  _createTimerAndGetVimPositionAndParameters()
-  vim.command("let g:is_virtual_method = 0");
+  vim.command("let g:clang_is_virtual_method = 0");
+  vim.command("let g:clang_is_function = 0");
   with libclangLock:
     [cursor, loc] = _getCursorAndLocation(line, col, params, timer)
     if cursor.is_virtual_method():
-      vim.command("let g:is_virtual_method = 1");
+      vim.command("let g:clang_is_virtual_method = 1");
+    if cursor.is_function():
+      vim.command("let g:clang_is_function = 1");
     defs = [cursor.get_definition(), cursor.referenced]
 
     for d in defs:
@@ -617,7 +620,9 @@ def gotoDeclaration(preview=True):
         if loc.file is not None:
           jumpToLocation(loc.file.name, loc.line, loc.column, preview)
           if d.is_virtual_method():
-            vim.command("let g:is_virtual_method = 1");
+            vim.command("let g:clang_is_virtual_method = 1");
+          if d.is_function():
+            vim.command("let g:clang_is_function = 1");
         break
 
   timer.finish()

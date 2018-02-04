@@ -660,13 +660,16 @@ endfunction
 function! s:GotoDeclaration(preview)
   try
     execute s:py_cmd "gotoDeclaration(vim.eval('a:preview') == '1')"
-    if g:is_virtual_method
+    if g:clang_is_virtual_method
       redraw
       echohl ErrorMsg | echom "This is a virtual function!" | echohl None
-    else
-      " TODO: only print this if this is a function.
+    elseif g:clang_is_function
       redraw
       echom "non-virtual function"
+    else
+      " clear previous message
+      redraw
+      echom ""
     endif
   catch /^Vim\%((\a\+)\)\=:E37/
     echoe "The current file is not saved, and 'hidden' is not set."
